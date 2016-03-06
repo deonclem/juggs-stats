@@ -6,6 +6,8 @@
 import 'angular';
 import 'angular-material';
 import 'angular-ui-router';
+import 'firebase'
+import 'angularfire'
 
 /**
  * Importing external stylesheets
@@ -29,6 +31,7 @@ module app {
         .module('app', [
             "ui.router",
             "ngMaterial",
+            "firebase",
             "app.services",
             "app.homepage"
         ])
