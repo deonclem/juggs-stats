@@ -34,7 +34,9 @@ export class OverviewController {
 
             data.players.forEach(player => {
                 this.scorers[player.name] = {
-                    tds: 0
+                    tds: 0,
+                    catches: 0,
+                    drops: 0
                 };
             });
 
@@ -63,18 +65,27 @@ export class OverviewController {
         let opponent = game[0].opponent;
         let result: string;
         game.forEach((play: Play) => {
-            if(play.score && play.side === 'O'){
-                homeScore+=6;
-                this.scorers[play.player].tds++ ;
-            }
-            if(play.score && play.side === 'D'){
-                oppScore+=6;
-            }
-            if(play.conversion && play.side === 'O'){
-                homeScore += parseInt(play.conversion, 10);
-            }
-            if(play.conversion && play.side === 'D'){
-                oppScore += parseInt(play.conversion, 10);
+            if(play.side === 'O'){
+                if(play.completed){
+                    this.scorers[play.player].catches++;
+                }
+                if(play.dropped){
+                    this.scorers[play.player].drops++;
+                }
+                if(play.score){
+                    homeScore+=6;
+                    this.scorers[play.player].tds++ ;
+                }
+                if(play.conversion){
+                    homeScore += parseInt(play.conversion, 10);
+                }
+            } else {
+                if(play.score){
+                    oppScore+=6;
+                }
+                if(play.conversion){
+                    oppScore += parseInt(play.conversion, 10);
+                }
             }
         });
         this.totalPointsFor += homeScore;

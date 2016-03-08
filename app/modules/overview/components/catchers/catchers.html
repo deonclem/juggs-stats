@@ -1,0 +1,14 @@
+<md-card data-layout="column" layout-align="start stretch" flex="100">
+    <div data-layout="row" data-layout-align="center">
+        <h2>Most catches</h2>
+    </div>
+    <md-list data->
+        <md-list-item ng-repeat="player in Catchers.catchers | orderBy: '-data.catches' | limitTo:5" data-layout="row" data-layout-align="space-between center" class="player">
+            <div data-layout="row" data-layout-align="start center">
+                <img ng-src="app/assets/img/players/{{player.name | lowercase}}.png" class="md-avatar" alt="{{player.name}}" />
+                <b>{{player.name}}</b>
+            </div>
+            <span>{{player.data.catches}}</span>
+        </md-list-item>
+    </md-list>
+</md-card>
