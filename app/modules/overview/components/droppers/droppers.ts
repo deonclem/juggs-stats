@@ -20,12 +20,12 @@ export class DroppersComponent implements ng.IComponentOptions {
 
         var ctrl = $scope.Droppers;
         console.log(ctrl.droppers);
-        ctrl.dropPercents = [];
+        ctrl.catchPercents = [];
         ctrl.droppers.forEach(player => {
            if(player.data.catches > 0){
-               ctrl.dropPercents.push({
+               ctrl.catchPercents.push({
                    name: player.name,
-                   percent: player.data.drops * 100 / player.data.catches
+                   percent: player.data.catches * 100 / (player.data.catches + player.data.drops)
                })
            }
         });

@@ -1,15 +1,17 @@
+@import '../../../../assets/variables';
+
 last-games{
   md-card{
     padding: 20px 40px;
     .game{
       .W{
-        color: green;
+        color: $color-good;
       }
       .D{
-        color: orange;
+        color: $color-average;
       }
       .L{
-        color: red;
+        color: $color-bad;
       }
     }
   }

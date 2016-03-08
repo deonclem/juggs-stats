@@ -1,14 +1,20 @@
 <md-card data-layout="column" layout-align="start stretch" flex="100">
     <div data-layout="row" data-layout-align="center">
-        <h2>Most drops</h2>
+        <h2>Catch %</h2>
     </div>
     <md-list data->
-        <md-list-item ng-repeat="player in Droppers.dropPercents | orderBy: '-percent' | limitTo:5" data-layout="row" data-layout-align="space-between center" class="player">
+        <md-list-item ng-repeat="player in Droppers.catchPercents | orderBy: '-percent' | limitTo:5" data-layout="row" data-layout-align="space-between center" class="player">
             <div data-layout="row" data-layout-align="start center">
                 <img ng-src="app/assets/img/players/{{player.name | lowercase}}.png" class="md-avatar" alt="{{player.name}}" />
                 <b>{{player.name}}</b>
             </div>
-            <span>{{player.percent | number:0}} %</span>
+            <span class="catch-percent"
+                    ng-class="{
+                    good:       player.percent >= 80,
+                    average:    player.percent < 80 && player.percent >= 60,
+                    bad:        player.percent < 60}">
+                {{player.percent | number:0}} %
+            </span>
         </md-list-item>
     </md-list>
 </md-card>
