@@ -1,12 +1,10 @@
 import {Play} from "../../models/Play";
 import {CustomFirebaseObject} from "../../models/CustomFirebaseObject";
 /**
- * The overview controller for the app. The controller:
- * - display a <hello world> message
+ * The overview controller for the app.
  */
 export class OverviewController {
     public loaded: boolean;
-    public componentMessage: string;
     public attemptedPasses = 0;
     public completedPasses = 0;
     public nbTD = 0;
@@ -18,8 +16,8 @@ export class OverviewController {
         draws: 0
     };
     public games:any[] = [];
-
-    private gameNumber = 0;
+    private scorers = {};
+    private scorersArray = [];
 
     constructor($firebaseObject: AngularFireObjectService){
         "ngInject";
@@ -34,8 +32,14 @@ export class OverviewController {
             //    this.processQBStats(play);
             //});
 
+            data.players.forEach(player => {
+                this.scorers[player.name] = {
+                    tds: 0
+                };
+            });
+
             data.games.forEach((game: Play[]) => {
-               this.processRecord(game);
+               this.processGame(game);
             });
             this.loaded = true;
 
@@ -54,13 +58,14 @@ export class OverviewController {
         }
     };
 
-    private processRecord(game:Play[]):void {
+    private processGame(game:Play[]):void {
         let homeScore = 0, oppScore = 0;
         let opponent = game[0].opponent;
         let result: string;
         game.forEach((play: Play) => {
             if(play.score && play.side === 'O'){
                 homeScore+=6;
+                this.scorers[play.player].tds++ ;
             }
             if(play.score && play.side === 'D'){
                 oppScore+=6;
@@ -89,6 +94,9 @@ export class OverviewController {
             homeScore: homeScore,
             oppScore: oppScore,
             result: result
-        })
+        });
+
+        this.scorersArray = Object.keys(this.scorers).map(key => {return {name:key, data: this.scorers[key]}});
+
     }
 }

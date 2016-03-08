@@ -21,9 +21,9 @@ export class Play {
     public fourthDown: string;
     public penalty: string;
     public quarterback: string;
-    public player: string[];
+    public player: string;
 
-    constructor(week:string, game:string, video_id:string, opponent:string, side:string, play_type:string, play_formation:string, play_routes:string, completed:string, incomplete:string, dropped:string, defended:string, intercepted:string, sack:string, flagged:string, out_of_bounds:string, fumble:string, score:string, conversion:string, fourthDown:string, penalty:string, quarterback:string, player:string[]) {
+    constructor(week:string, game:string, video_id:string, opponent:string, side:string, play_type:string, play_formation:string, play_routes:string, completed:string, incomplete:string, dropped:string, defended:string, intercepted:string, sack:string, flagged:string, out_of_bounds:string, fumble:string, score:string, conversion:string, fourthDown:string, penalty:string, quarterback:string, player:string) {
         this.week = week;
         this.game = game;
         this.video_id = video_id;

@@ -10,6 +10,7 @@ import {config as OverviewRouting} from './OverviewRouting'
 import {TeamRecordComponent} from "./components/team-record/teamRecord";
 import {LastGamesComponent} from "./components/last-games/lastGames";
 import {PointRatioComponent} from "./components/point-ratio/pointRatio";
+import {ScorersComponent} from "./components/scorers/scorers";
 
 // Highcharts
 import 'commonjs-highcharts'
@@ -25,4 +26,5 @@ angular.module('app.overview', ["ui.router", 'highcharts-ng'])
     .controller('OverviewController', OverviewController)
     .component('lastGames', new LastGamesComponent())
     .component('pointRatio', new PointRatioComponent())
+    .component('scorers', new ScorersComponent())
     .component('teamRecord', new TeamRecordComponent());
