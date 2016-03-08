@@ -1,0 +1,9 @@
+{
+  "firebase": "juggs-stats",
+  "public": "dist",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}
