@@ -1,0 +1,9 @@
+<md-card data-layout="column" layout-align="start stretch" flex="100">
+    <div data-layout="row" data-layout-align="center">
+        <h2>Last games</h2>
+    </div>
+    <div ng-repeat="game in Last.games" data-layout="row" data-layout-align="space-between" class="game">
+        <div>vs <b>{{game.opponent}}</b></div>
+        <div><span class="{{game.result}}"><b>{{game.result}}</b></span> {{game.homeScore}} - {{game.oppScore}}</div>
+    </div>
+</md-card>

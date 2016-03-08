@@ -1,0 +1,12 @@
+point-ratio{
+  md-card {
+    padding: 20px 0;
+    .highcharts-container{
+      margin-top:-50px;
+      margin-bottom:-50px;
+      .highcharts-background{
+        fill: transparent;
+      }
+    }
+  }
+}

@@ -19,8 +19,14 @@ import 'angular-material/angular-material.css';
  */
 import {config} from './config/core/coreConfig'
 import {run} from './config/core/coreRun'
-import './modules/homepage/index';
+import './modules/overview/index';
 import './services/index';
+import './components/index';
+/**
+ * Importing the app images
+ */
+
+require.context('./assets/img', true, /^\.\//);
 
 /**
  * The main app module.
@@ -33,7 +39,8 @@ module app {
             "ngMaterial",
             "firebase",
             "app.services",
-            "app.homepage"
+            "app.components",
+            "app.overview"
         ])
         .config(config)
         .run(run);

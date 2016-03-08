@@ -4,4 +4,5 @@ export interface CustomFirebaseObject extends AngularFireObject {
 
     plays: Play[];
     players: Player[];
+    games: Play[][];
 }

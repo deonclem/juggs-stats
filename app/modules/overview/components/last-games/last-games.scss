@@ -1,0 +1,16 @@
+last-games{
+  md-card{
+    padding: 20px 40px;
+    .game{
+      .W{
+        color: green;
+      }
+      .D{
+        color: orange;
+      }
+      .L{
+        color: red;
+      }
+    }
+  }
+}

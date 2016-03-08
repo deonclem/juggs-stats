@@ -1,0 +1,33 @@
+@import '../../assets/variables';
+
+$navbar-height: 80px;
+
+navbar {
+  display: block;
+  background-color: $color-primary;
+  height: $navbar-height;
+  color: white;
+  img.navbar-logo{
+    max-height:$navbar-height;
+    padding:10px;
+    box-sizing: border-box;
+    margin-right: 20px;
+  }
+  .navbar-item{
+    color: #C7C6E3;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 0 10px;
+    margin-left: 20px;
+    img{
+      max-height: 40px;
+      vertical-align: middle;
+      display: inline-block;
+      margin-right:10px;
+    }
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+}
