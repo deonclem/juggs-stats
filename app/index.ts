@@ -22,11 +22,21 @@ import {run} from './config/core/coreRun'
 import './modules/overview/index';
 import './services/index';
 import './components/index';
+
+
+/**
+ * Global stylesheet
+ */
+import './assets/global.scss';
+import './assets/global.resp.scss';
+
+
 /**
  * Importing the app images
  */
 
 require.context('./assets/img', true, /^\.\//);
+
 
 /**
  * The main app module.

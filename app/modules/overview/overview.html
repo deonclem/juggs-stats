@@ -2,21 +2,21 @@
     <div data-layout="column" data-layout-padding ng-if="!Overview.loading">
         <h1>Overview</h1>
         <div data-layout="row" data-layout-wrap data-layout-padding data-layout-align="space-around stretch">
-            <team-record flex="30" record="Overview.record" data-layout="row"></team-record>
-            <last-games flex="30" games="Overview.games" data-layout="row"></last-games>
-            <point-ratio flex="30" ratio="{for:Overview.totalPointsFor,against:Overview.totalPointsAgainst}" data-layout="row"></point-ratio>
+            <team-record flex="30" flex-md="33" flex-sm="100" record="Overview.record" data-layout="row"></team-record>
+            <last-games flex="30" flex-md="33" flex-sm="100" games="Overview.games" data-layout="row"></last-games>
+            <point-ratio flex="30" flex-md="33" flex-sm="100" ratio="{for:Overview.totalPointsFor,against:Overview.totalPointsAgainst}" data-layout="row"></point-ratio>
         </div>
         <h1>Offense</h1>
         <div data-layout="row" data-layout-wrap data-layout-padding data-layout-align="space-around stretch">
-            <scorers flex="30" scorers="Overview.playersArray" data-layout="row"></scorers>
-            <catchers flex="30" catchers="Overview.playersArray" data-layout="row"></catchers>
-            <droppers flex="30" droppers="Overview.playersArray" data-layout="row"></droppers>
+            <scorers flex="30" flex-md="33" flex-sm="100" scorers="Overview.playersArray" data-layout="row"></scorers>
+            <catchers flex="30" flex-md="33" flex-sm="100" catchers="Overview.playersArray" data-layout="row"></catchers>
+            <droppers flex="30" flex-md="33" flex-sm="100" droppers="Overview.playersArray" data-layout="row"></droppers>
         </div>
         <h1>Defense</h1>
         <div data-layout="row" data-layout-wrap data-layout-padding data-layout-align="space-around stretch">
-            <flaggers flex="30" flaggers="Overview.playersArray" data-layout="row"></flaggers>
-            <intercepters flex="30" intercepters="Overview.playersArray" data-layout="row"></intercepters>
-            <sackers flex="30" sackers="Overview.playersArray" data-layout="row"></sackers>
+            <flaggers flex="30" flex-md="33" flex-sm="100" flaggers="Overview.playersArray" data-layout="row"></flaggers>
+            <intercepters flex="30" flex-md="33" flex-sm="100" intercepters="Overview.playersArray" data-layout="row"></intercepters>
+            <sackers flex="30" flex-md="33" flex-sm="100" sackers="Overview.playersArray" data-layout="row"></sackers>
         </div>
     </div>
     <div ng-if="Overview.loading" layout="row" data-layout-align="center center" class="loading">
