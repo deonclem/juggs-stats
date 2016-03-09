@@ -16,11 +16,14 @@ export class OverviewController {
         draws: 0
     };
     public games:any[] = [];
+    public loading: boolean;
     private players = {};
     private playersArray = [];
 
     constructor($firebaseObject: AngularFireObjectService){
         "ngInject";
+
+        this.loading = true;
 
         let dbRef:Firebase = new Firebase('https://juggs-stats.firebaseio.com/');
 
@@ -49,7 +52,7 @@ export class OverviewController {
             data.games.forEach((game: Play[]) => {
                this.processGame(game);
             });
-            this.loaded = true;
+            this.loading = false;
 
         });
     }
