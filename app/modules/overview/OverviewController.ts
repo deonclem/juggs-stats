@@ -36,7 +36,8 @@ export class OverviewController {
                 this.scorers[player.name] = {
                     tds: 0,
                     catches: 0,
-                    drops: 0
+                    drops: 0,
+                    id: player.jerseyNumber
                 };
             });
 

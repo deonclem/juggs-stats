@@ -5,7 +5,7 @@
     <md-list data->
         <md-list-item ng-repeat="player in Catchers.catchers | orderBy: '-data.catches' | limitTo:5" data-layout="row" data-layout-align="space-between center" class="player">
             <div data-layout="row" data-layout-align="start center">
-                <img ng-src="app/assets/img/players/{{player.name | lowercase}}.png" class="md-avatar" alt="{{player.name}}" />
+                <img ng-src="app/assets/img/players/{{player.data.id}}.png" class="md-avatar" alt="{{player.name}}" />
                 <b>{{player.name}}</b>
             </div>
             <span>{{player.data.catches}}</span>
