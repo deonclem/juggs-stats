@@ -66,7 +66,7 @@ export class OverviewController {
         let result: string;
         game.forEach((play: Play) => {
             if(play.side === 'O'){
-                if(play.completed){
+                if(play.completed && play.player){
                     this.scorers[play.player].catches++;
                 }
                 if(play.dropped){
@@ -74,14 +74,20 @@ export class OverviewController {
                 }
                 if(play.score){
                     homeScore+=6;
-                    this.scorers[play.player].tds++ ;
+                    if(play.player){
+                        this.scorers[play.player].tds++ ;
+                    }
                 }
                 if(play.conversion){
                     homeScore += parseInt(play.conversion, 10);
                 }
             } else {
                 if(play.score){
-                    oppScore+=6;
+                    if(play.intercepted){
+                        homeScore+=6;
+                    } else {
+                        oppScore+=6;
+                    }
                 }
                 if(play.conversion){
                     oppScore += parseInt(play.conversion, 10);
