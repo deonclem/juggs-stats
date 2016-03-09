@@ -132,7 +132,8 @@ export class OverviewController {
             opponent: opponent,
             homeScore: homeScore,
             oppScore: oppScore,
-            result: result
+            result: result,
+            id: game[0].week + '' + game[0].game
         });
 
         this.playersArray = Object.keys(this.players).map(key => {return {name:key, data: this.players[key]}});

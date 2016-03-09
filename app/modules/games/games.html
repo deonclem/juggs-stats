@@ -1,0 +1,25 @@
+<div class="games-container">
+    <div data-layout="column" data-layout-padding ng-if="!Games.loading">
+        <h1>Games</h1>
+        <div ng-repeat="(week,games) in Games.gamesByWeek">
+            <h2>Week {{week}}</h2>
+            <div data-layout="row" data-layout-wrap data-layout-padding data-layout-align="space-around stretch">
+                <md-card flex="30" flex-md="33" flex-sm="100" ng-repeat="game in games" class="game">
+                    <a ui-sref="games.game({gameId:game.id})">
+                        <div data-layout="row" data-layout-align="space-around">
+                            <div>
+                                vs&nbsp;<b>{{game.opponent}}</b>
+                            </div>
+                            <div>
+                                <b class="{{game.score.result}}">{{game.score.result}}</b>&nbsp;{{game.score.homeScore}} - {{game.score.oppScore}}
+                            </div>
+                        </div>
+                    </a>
+                </md-card>
+            </div>
+        </div>
+    </div>
+    <div ng-if="Games.loading" layout="row" data-layout-align="center center" class="loading">
+        <md-progress-circular md-mode="indeterminate" md-diameter="128"></md-progress-circular>
+    </div>
+</div>

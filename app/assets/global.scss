@@ -1,3 +1,20 @@
+@import './variables';
+
 md-card{
   padding: 20px 40px;
+}
+.loading{
+  height:500px;
+}
+
+.game{
+  .W{
+    color: $color-good;
+  }
+  .D{
+    color: $color-average;
+  }
+  .L{
+    color: $color-bad;
+  }
 }

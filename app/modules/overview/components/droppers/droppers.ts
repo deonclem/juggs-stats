@@ -19,7 +19,6 @@ export class DroppersComponent implements ng.IComponentOptions {
         'ngInject';
 
         var ctrl = $scope.Droppers;
-        console.log(ctrl.droppers);
         ctrl.catchPercents = [];
         ctrl.droppers.forEach(player => {
            if(player.data.catches > 0){

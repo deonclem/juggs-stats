@@ -20,6 +20,7 @@ import 'angular-material/angular-material.css';
 import {config} from './config/core/coreConfig'
 import {run} from './config/core/coreRun'
 import './modules/overview/index';
+import './modules/games/index';
 import './services/index';
 import './components/index';
 
@@ -50,7 +51,8 @@ module app {
             "firebase",
             "app.services",
             "app.components",
-            "app.overview"
+            "app.overview",
+            "app.games"
         ])
         .config(config)
         .run(run);

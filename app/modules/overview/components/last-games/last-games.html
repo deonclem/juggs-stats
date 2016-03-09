@@ -2,8 +2,10 @@
     <div data-layout="row" data-layout-align="center">
         <h2>Last games</h2>
     </div>
-    <p ng-repeat="game in Last.games | orderBy:0:true" data-layout="row" data-layout-align="space-between" class="game">
-        <span>vs <b>{{game.opponent}}</b></span>
-        <span><span class="{{game.result}}"><b>{{game.result}}</b></span> {{game.homeScore}} - {{game.oppScore}}</span>
+    <p ng-repeat="game in Last.games | orderBy:0:true">
+        <a ui-sref="games.game({gameId:game.id})" data-layout="row" data-layout-align="space-between" class="game">
+            <span>vs <b>{{game.opponent}}</b></span>
+            <span><span class="{{game.result}}"><b>{{game.result}}</b></span> {{game.homeScore}} - {{game.oppScore}}</span>
+        </a>
     </p>
 </md-card>

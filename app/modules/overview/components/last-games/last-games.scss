@@ -2,16 +2,9 @@
 
 last-games{
   md-card{
-    .game{
-      .W{
-        color: $color-good;
-      }
-      .D{
-        color: $color-average;
-      }
-      .L{
-        color: $color-bad;
-      }
+    a{
+      color: black;
+      text-decoration: none;
     }
   }
 }

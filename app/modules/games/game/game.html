@@ -1,0 +1,38 @@
+<div class="game-container">
+    <div data-layout="column" data-layout-padding ng-if="!Game.loading">
+        <div data-layout="row" data-layout-align="space-around center">
+            <h2>Juggernautes</h2>
+            <div>-</div>
+            <h2>{{Game.opponent}}</h2>
+        </div>
+        <p ng-repeat="play in Game.game" data-layout="row" data-layout-align="space-between">
+            <span>
+                Side : {{play.side}}
+            </span>
+            <span>
+                Play type : {{play.play_type}}
+            </span>
+            <span>
+                Pass complete : {{play.completed}}
+            </span>
+            <span>
+                Pass incomplete : {{play.incomplete}}
+            </span>
+            <span>
+                Pass dropped : {{play.dropped}}
+            </span>
+            <span>
+                Touchdown : {{play.score}}
+            </span>
+            <span>
+                Conversion : {{play.conversion}}
+            </span>
+            <span>
+                Player : {{play.player}}
+            </span>
+        </p>
+    </div>
+    <div ng-if="Game.loading" layout="row" data-layout-align="center center" class="loading">
+        <md-progress-circular md-mode="indeterminate" md-diameter="128"></md-progress-circular>
+    </div>
+</div>
