@@ -5,7 +5,7 @@ import {Play} from "../../../models/Play";
 export class GameController {
 
     public game: Play[];
-    public opponentAdd : string;
+    public opponent: string;
     private loading:boolean;
 
     constructor($firebaseArray: AngularFireArrayService, $stateParams: ng.ui.IStateParamsService){
