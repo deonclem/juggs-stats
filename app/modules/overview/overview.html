@@ -7,8 +7,14 @@
     </div>
     <h1>Offense</h1>
     <div data-layout="row" data-layout-wrap data-layout-padding data-layout-align="space-around stretch" ng-if="Overview.loaded">
-        <scorers flex="30" scorers="Overview.scorersArray" data-layout="row"></scorers>
-        <catchers flex="30" catchers="Overview.scorersArray" data-layout="row"></catchers>
-        <droppers flex="30" droppers="Overview.scorersArray" data-layout="row"></droppers>
+        <scorers flex="30" scorers="Overview.playersArray" data-layout="row"></scorers>
+        <catchers flex="30" catchers="Overview.playersArray" data-layout="row"></catchers>
+        <droppers flex="30" droppers="Overview.playersArray" data-layout="row"></droppers>
+    </div>
+    <h1>Defense</h1>
+    <div data-layout="row" data-layout-wrap data-layout-padding data-layout-align="space-around stretch" ng-if="Overview.loaded">
+        <flaggers flex="30" flaggers="Overview.playersArray" data-layout="row"></flaggers>
+        <intercepters flex="30" intercepters="Overview.playersArray" data-layout="row"></intercepters>
+        <sackers flex="30" sackers="Overview.playersArray" data-layout="row"></sackers>
     </div>
 </div>

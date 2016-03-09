@@ -1,14 +1,14 @@
 <md-card data-layout="column" layout-align="start stretch" flex="100">
     <div data-layout="row" data-layout-align="center">
-        <h2>Most TD scored</h2>
+        <h2>Most deflags</h2>
     </div>
     <md-list data->
-        <md-list-item ng-repeat="player in Scorers.scorers | orderBy: '-data.tds' | limitTo:5" data-layout="row" data-layout-align="space-between center" class="player" ng-if="player.data.tds">
+        <md-list-item ng-repeat="player in Flaggers.flaggers | orderBy: '-data.deflags' | limitTo:5" data-layout="row" data-layout-align="space-between center" class="player">
             <div data-layout="row" data-layout-align="start center">
                 <img ng-src="app/assets/img/players/{{player.data.id}}.png" class="md-avatar" alt="{{player.name}}" />
                 <b>{{player.name}}</b>
             </div>
-            <span>{{player.data.tds}}</span>
+            <span>{{player.data.deflags}}</span>
         </md-list-item>
     </md-list>
 </md-card>

@@ -16,8 +16,8 @@ export class OverviewController {
         draws: 0
     };
     public games:any[] = [];
-    private scorers = {};
-    private scorersArray = [];
+    private players = {};
+    private playersArray = [];
 
     constructor($firebaseObject: AngularFireObjectService){
         "ngInject";
@@ -33,11 +33,16 @@ export class OverviewController {
             //});
 
             data.players.forEach(player => {
-                this.scorers[player.name] = {
+                this.players[player.name] = {
                     tds: 0,
                     catches: 0,
                     drops: 0,
-                    id: player.jerseyNumber
+                    id: player.jerseyNumber,
+                    deflags: 0,
+                    sacks: 0,
+                    defended: 0,
+                    pickSix: 0,
+                    interceptions: 0
                 };
             });
 
@@ -68,15 +73,15 @@ export class OverviewController {
         game.forEach((play: Play) => {
             if(play.side === 'O'){
                 if(play.completed && play.player){
-                    this.scorers[play.player].catches++;
+                    this.players[play.player].catches++;
                 }
                 if(play.dropped){
-                    this.scorers[play.player].drops++;
+                    this.players[play.player].drops++;
                 }
                 if(play.score){
                     homeScore+=6;
                     if(play.player){
-                        this.scorers[play.player].tds++ ;
+                        this.players[play.player].tds++ ;
                     }
                 }
                 if(play.conversion){
@@ -86,9 +91,22 @@ export class OverviewController {
                 if(play.score){
                     if(play.intercepted){
                         homeScore+=6;
+                        this.players[play.player].pickSix++;
                     } else {
                         oppScore+=6;
                     }
+                }
+                if(play.intercepted){
+                    this.players[play.player].interceptions++;
+                }
+                if(play.flagged){
+                    this.players[play.player].deflags++;
+                }
+                if(play.sack){
+                    this.players[play.player].sacks++;
+                }
+                if(play.defended){
+                    this.players[play.player].defended++;
                 }
                 if(play.conversion){
                     oppScore += parseInt(play.conversion, 10);
@@ -114,7 +132,7 @@ export class OverviewController {
             result: result
         });
 
-        this.scorersArray = Object.keys(this.scorers).map(key => {return {name:key, data: this.scorers[key]}});
+        this.playersArray = Object.keys(this.players).map(key => {return {name:key, data: this.players[key]}});
 
     }
 }
