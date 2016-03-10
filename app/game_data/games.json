@@ -690,7 +690,7 @@
       "defended": "",
       "intercepted": "",
       "sack": "",
-      "flagged": "",
+      "flagged": "1",
       "out_of_bounds": "",
       "fumble": "",
       "score": "",

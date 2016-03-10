@@ -1,36 +1,92 @@
-<div class="game-container">
+<div class="game-container game">
     <div data-layout="column" data-layout-padding ng-if="!Game.loading">
-        <div data-layout="row" data-layout-align="space-around center">
-            <h2>Juggernautes</h2>
-            <div>-</div>
-            <h2>{{Game.opponent}}</h2>
+        <div data-layout="row" data-layout-align="start center" class="game-header">
+            <h2 flex="33" data-layout="row" data-layout-align="center center">
+                <img src="app/assets/img/teams/juggernautes.jpg">
+                <span>
+                    Juggernautes
+                </span>
+            </h2>
+            <h2 flex="33" data-layout="row" data-layout-align="center">{{Game.gameStats.result.homeScore}} - {{Game.gameStats.result.oppScore}}</h2>
+            <h2 flex="33" data-layout="row" data-layout-align="center center">
+                <img ng-src="app/assets/img/teams/{{Game.opponent | cleanTeamName}}.png">
+                <span>
+                    {{Game.opponent}}
+                </span>
+            </h2>
         </div>
-        <p ng-repeat="play in Game.game" data-layout="row" data-layout-align="space-between">
-            <span>
-                Side : {{play.side}}
-            </span>
-            <span>
-                Play type : {{play.play_type}}
-            </span>
-            <span>
-                Pass complete : {{play.completed}}
-            </span>
-            <span>
-                Pass incomplete : {{play.incomplete}}
-            </span>
-            <span>
-                Pass dropped : {{play.dropped}}
-            </span>
-            <span>
-                Touchdown : {{play.score}}
-            </span>
-            <span>
-                Conversion : {{play.conversion}}
-            </span>
-            <span>
-                Player : {{play.player}}
-            </span>
-        </p>
+        <div data-layout="row" data-layout-align="center" class="game-result">
+            <h2 class="{{Game.gameStats.result.result}}">{{Game.gameStats.result.result}}</h2>
+        </div>
+        <h1>Play by play</h1>
+        <md-card class="play-by-play">
+            <div ng-repeat="play in Game.game" ng-switch="play.side" data-layout="column" ng-if="play.video_id">
+                <md-divider ng-if="Game.game[$index -1].side !== play.side && !$first"></md-divider>
+                <p ng-switch-when="O" data-layout="row" data-layout-align="start center" class="offensive-play play">
+                    <span flex="20"><b class="play-type">OFFENSE</b><small class="video-id"> - {{play.video_id}}</small></span>
+                    <span flex="20">
+                        <span class="pass-play" ng-if="play.play_type === 'P'">Pass play</span>
+                        <span class="run-play" ng-if="play.play_type === 'R'">Run play</span>
+                    </span>
+                    <span flex="20">
+                        <b>{{play.play_formation}}</b>&nbsp;{{play.play_routes}}
+                    </span>
+                    <span flex="40">
+                        <span ng-if="play.score" class="score"><b>TOUCHDOWN</b> - </span>
+                        <span ng-if="play.conversion">
+                            <span ng-if="play.conversion !== '0'" class="score"><b>PAT</b><small ng-if="play.conversion === '2'">&nbsp;2 points</small> - </span>
+                            <span ng-if="play.conversion === '0'"><b>PAT missed</b><small ng-if="play.conversion === '2'">&nbsp;2 points</small> - </span>
+                        </span>
+                        <span ng-if="play.play_type === 'P' && !play.sack">
+                            Pass
+                            <b ng-if="play.completed">caught</b>
+                            <b ng-if="play.incomplete">incomplete</b>
+                            <b ng-if="play.dropped">dropped</b>
+                            <b ng-if="play.defended">defended</b>
+                            <b ng-if="play.intercepted">intercepted</b>
+                            <span ng-if="play.completed || play.dropped">by {{play.player}}</span>
+                            &nbsp;(QB : {{play.quarterback}})
+                        </span>
+                        <span ng-if="play.sack">QB {{play.quarterback}} sacked</span>
+                        <span ng-if="play.play_type === 'R'">Run by {{play.player}}</span>
+                    </span>
+                </p>
+                <p ng-switch-when="D" data-layout="row" data-layout-align="start" class="defensive-play play">
+                    <span flex="20"><b class="play-type">DEFENSE</b><small class="video-id"> - {{play.video_id}}</small></span>
+                    <span flex="20">
+                        <span class="pass-play" ng-if="play.play_type === 'P'">Pass play</span>
+                        <span class="run-play" ng-if="play.play_type === 'R'">Run play</span>
+                    </span>
+                    <span flex="20">
+                        <span ng-if="play.play_type === 'P' && !play.sack">
+                            Pass
+                            <b ng-if="play.completed">caught</b>
+                            <b ng-if="play.incomplete">incomplete</b>
+                            <b ng-if="play.dropped">dropped</b>
+                            <b ng-if="play.defended">defended</b>
+                            <b ng-if="play.intercepted">intercepted</b>
+                            <span ng-if="play.defended || play.intercepted">by {{play.player}}</span>
+                        </span>
+                        <span ng-if="play.fumble">
+                            Fumble
+                        </span>
+                    </span>
+                    <span flex="40">
+                        <span ng-if="play.flagged">
+                            Deflagged by {{play.player}}
+                        </span>
+                        <span ng-if="play.sack">
+                            Sacked by {{play.player}}
+                        </span>
+                        <span ng-if="play.score" class="score"><b>TOUCHDOWN</b></span>
+                        <span ng-if="play.conversion">
+                            <span ng-if="play.conversion !== '0'" class="score"><b>PAT</b><small ng-if="play.conversion === '2'">&nbsp;2 points</small></span>
+                            <span ng-if="play.conversion === '0'"><b>PAT defended</b><small ng-if="play.conversion === '2'">&nbsp;2 points</small></span>
+                        </span>
+                    </span>
+                </p>
+            </div>
+        </md-card>
     </div>
     <div ng-if="Game.loading" layout="row" data-layout-align="center center" class="loading">
         <md-progress-circular md-mode="indeterminate" md-diameter="128"></md-progress-circular>

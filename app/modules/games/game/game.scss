@@ -1,0 +1,54 @@
+@import '../../../assets/variables';
+
+.game-container{
+  .game-header{
+    h2{
+      margin-bottom: 0;
+      img{
+        height:70px;
+        margin-right:20px;
+      }
+    }
+  }
+  .game-result{
+    h2{
+      margin-top: 0;
+    }
+  }
+  .play-by-play{
+    padding: 30px;
+    md-divider{
+      margin: 10px 0;
+    }
+    p.play{
+      margin: 5px 0;
+      .run-play{
+        color: #E64A19; on the play by play and add team pictures
+      }
+      &.offensive-play{
+        .play-type{
+          color: $color-primary;
+        }
+        .video-id{
+          font-style: italic;
+          font-size: 9pt;
+        }
+        .score{
+          color: #43A047;
+        }
+      }
+      &.defensive-play{
+        .play-type{
+          color: #64B5F6;
+        }
+        .video-id{
+          font-style: italic;
+          font-size: 9pt;
+        }
+        .score{
+          color: #d32f2f;
+        }
+      }
+    }
+  }
+}
