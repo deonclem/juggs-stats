@@ -2,6 +2,7 @@
 
 .game-container{
   .game-header{
+    padding:0;
     h2{
       margin-bottom: 0;
       img{
@@ -11,6 +12,7 @@
     }
   }
   .game-result{
+    padding:0;
     h2{
       margin-top: 0;
     }
@@ -23,7 +25,7 @@
     p.play{
       margin: 5px 0;
       .run-play{
-        color: #E64A19; on the play by play and add team pictures
+        color: #E64A19;
       }
       &.offensive-play{
         .play-type{

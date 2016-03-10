@@ -18,6 +18,12 @@
         <div data-layout="row" data-layout-align="center" class="game-result">
             <h2 class="{{Game.gameStats.result.result}}">{{Game.gameStats.result.result}}</h2>
         </div>
+        <h1>Stats</h1>
+        <div data-layout="row" data-layout-wrap data-layout-padding data-layout-align="space-around stretch">
+            <plays flex="30" flex-md="33" flex-sm="100" plays="Game.playsArray" data-layout="row"></plays>
+            <offense flex="30" flex-md="33" flex-sm="100" offense="Game.playersArray" data-layout="row"></offense>
+            <defense flex="30" flex-md="33" flex-sm="100" defense="Game.playersArray" data-layout="row"></defense>
+        </div>
         <h1>Play by play</h1>
         <md-card class="play-by-play">
             <div ng-repeat="play in Game.game" ng-switch="play.side" data-layout="column" ng-if="play.video_id">
@@ -73,10 +79,10 @@
                     </span>
                     <span flex="40">
                         <span ng-if="play.flagged">
-                            Deflagged by {{play.player}}
+                            <b>Deflagged</b> by {{play.player}}
                         </span>
                         <span ng-if="play.sack">
-                            Sacked by {{play.player}}
+                            <b>Sacked</b> by {{play.player}}
                         </span>
                         <span ng-if="play.score" class="score"><b>TOUCHDOWN</b></span>
                         <span ng-if="play.conversion">

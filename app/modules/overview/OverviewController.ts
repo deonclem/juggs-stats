@@ -30,10 +30,6 @@ export class OverviewController {
         let plays: CustomFirebaseObject = <CustomFirebaseObject>$firebaseObject(dbRef);
 
         plays.$loaded((data: CustomFirebaseObject) => {
-            //data.plays.forEach((play: Play) => {
-            //    this.gameNumber = parseInt(play.game,10);
-            //    this.processQBStats(play);
-            //});
 
             data.players.forEach(player => {
                 this.players[player.name] = {

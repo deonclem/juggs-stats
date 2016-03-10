@@ -1,0 +1,11 @@
+@import '../../../../assets/variables';
+
+plays{
+  md-list{
+    max-height: 250px;
+    overflow: auto;
+    b {
+      color: $color-primary;
+    }
+  }
+}
