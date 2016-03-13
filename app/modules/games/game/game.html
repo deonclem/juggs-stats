@@ -43,7 +43,7 @@
                             <span ng-if="play.conversion !== '0'" class="score"><b>PAT</b><small ng-if="play.conversion === '2'">&nbsp;2 points</small> - </span>
                             <span ng-if="play.conversion === '0'"><b>PAT missed</b><small ng-if="play.conversion === '2'">&nbsp;2 points</small> - </span>
                         </span>
-                        <span ng-if="play.play_type === 'P' && !play.sack">
+                        <span ng-if="play.play_type === 'P' && !play.sack && !play.penalty">
                             Pass
                             <b ng-if="play.completed">caught</b>
                             <b ng-if="play.incomplete">incomplete</b>
@@ -55,6 +55,9 @@
                         </span>
                         <span ng-if="play.sack">QB {{play.quarterback}} sacked</span>
                         <span ng-if="play.play_type === 'R'">Run by {{play.player}}</span>
+                        <span ng-if="play.penalty">
+                            <b>Penalty : </b>{{play.penalty}}
+                        </span>
                     </span>
                 </p>
                 <p ng-switch-when="D" data-layout="row" data-layout-align="start" class="defensive-play play">
@@ -78,16 +81,22 @@
                         </span>
                     </span>
                     <span flex="40">
-                        <span ng-if="play.flagged">
-                            <b>Deflagged</b> by {{play.player}}
-                        </span>
-                        <span ng-if="play.sack">
-                            <b>Sacked</b> by {{play.player}}
-                        </span>
                         <span ng-if="play.score" class="score"><b>TOUCHDOWN</b></span>
                         <span ng-if="play.conversion">
                             <span ng-if="play.conversion !== '0'" class="score"><b>PAT</b><small ng-if="play.conversion === '2'">&nbsp;2 points</small></span>
                             <span ng-if="play.conversion === '0'"><b>PAT defended</b><small ng-if="play.conversion === '2'">&nbsp;2 points</small></span>
+                        </span>
+                        <span ng-if="play.flagged">
+                            <b>Deflagged</b> by {{play.player}}
+                        </span>
+                        <span ng-if="play.sack">
+                            <span ng-if="play.conversion">
+                                &nbsp;-&nbsp;
+                            </span>
+                            <b>Sacked</b> by {{play.player}}
+                        </span>
+                        <span ng-if="play.out_of_bounds">
+                            Player went OOB
                         </span>
                     </span>
                 </p>

@@ -87,7 +87,7 @@ export class GameController {
                         this.players[play.player].tds++;
                     }
                 }
-                if(play.incomplete){
+                if(play.incomplete || play.defended){
                     this.plays[completePlay].incomplete++;
                 }
                 if(play.intercepted){

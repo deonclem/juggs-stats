@@ -3,7 +3,7 @@
         <h2>Most interceptions</h2>
     </div>
     <md-list data->
-        <md-list-item ng-repeat="player in Intercepters.intercepters | orderBy: '-data.interceptions' | limitTo:5" data-layout="row" data-layout-align="space-between center" class="player" ng-if="player.data.interceptions > 0">
+        <md-list-item ng-repeat="player in Intercepters.intercepters | orderBy: ['-data.interceptions','-data.pickSix'] | limitTo:5" data-layout="row" data-layout-align="space-between center" class="player" ng-if="player.data.interceptions > 0">
             <div data-layout="row" data-layout-align="start center">
                 <img ng-src="app/assets/img/players/{{player.data.id}}.png" class="md-avatar" alt="{{player.name}}" />
                 <b>{{player.name}}</b>

@@ -3,7 +3,7 @@
         <h2>Play distribution</h2>
     </div>
     <md-list>
-        <md-list-item ng-repeat="play in Plays.plays| orderBy: ['-data.count','-data.td']" data-layout="row" data-layout-align="space-between center" class="play">
+        <md-list-item ng-repeat="play in Plays.plays| orderBy: ['-data.count','-data.td']" data-layout="row" data-layout-align="space-between center" class="play" ng-if="play.play && (play.data.catches || play.data.drops || play.data.incomplete || play.data.interceptions)">
             <div data-layout="row" data-layout-align="start center">
                 <b>{{play.play}}</b>
             </div>
