@@ -3,7 +3,7 @@
         <h2>Catch %</h2>
     </div>
     <md-list data->
-        <md-list-item ng-repeat="player in Droppers.catchPercents | orderBy: '-percent' | limitTo:5" data-layout="row" data-layout-align="space-between center" class="player">
+        <md-list-item ng-repeat="player in Droppers.catchPercents | orderBy: '-percent'" data-layout="row" data-layout-align="space-between center" class="player">
             <div data-layout="row" data-layout-align="start center">
                 <img ng-src="app/assets/img/players/{{player.id}}.png" class="md-avatar" alt="{{player.name}}" />
                 <b>{{player.name}}</b>
