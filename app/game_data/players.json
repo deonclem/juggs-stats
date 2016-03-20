@@ -1,38 +1,47 @@
 [
   {
     "name":"Clément",
-    "jerseyNumber":4
+    "jerseyNumber":4,
+    "position": ["WR"]
   },
   {
     "name":"Renaud",
-    "jerseyNumber":5
+    "jerseyNumber":5,
+    "position": ["QB"]
   },
   {
     "name":"Shaky",
-    "jerseyNumber":8
+    "jerseyNumber":8,
+    "position": ["WR", "S"]
   },
   {
     "name":"Gautier",
-    "jerseyNumber":13
+    "jerseyNumber":13,
+    "position": ["R"]
   },
   {
     "name":"Danica",
-    "jerseyNumber":6
+    "jerseyNumber":6,
+    "position": ["CB"]
   },
   {
     "name":"Sandrine",
-    "jerseyNumber":10
+    "jerseyNumber":10,
+    "position": ["SR"]
   },
   {
     "name":"Sylvain",
-    "jerseyNumber":29
+    "jerseyNumber":29,
+    "position": ["C"]
   },
   {
     "name":"Jordan",
-    "jerseyNumber":95
+    "jerseyNumber":95,
+    "position": ["S"]
   },
   {
     "name":"Matthieu",
-    "jerseyNumber":99
+    "jerseyNumber":99,
+    "position": ["CB"]
   }
 ]
