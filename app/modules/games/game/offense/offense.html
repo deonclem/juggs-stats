@@ -4,10 +4,7 @@
     </div>
     <md-list>
         <md-list-item ng-if="player.data.td || player.data.catches || player.data.drops" ng-repeat="player in Offense.offense| orderBy: ['-data.tds','-data.catches']" data-layout="row" data-layout-align="space-between center" class="player">
-            <div data-layout="row" data-layout-align="start center">
-                <img ng-src="app/assets/img/players/{{player.data.id}}.png" class="md-avatar" alt="{{player.name}}" />
-                <b>{{player.name}}</b>
-            </div>
+            <player-link player="player"></player-link>
             <span>{{player.data.tds}} <b title="Touchdowns">TD</b> {{player.data.catches}} <b title="Catches">C</b> {{player.data.drops}} <b title="Drops">D</b></span>
         </md-list-item>
     </md-list>

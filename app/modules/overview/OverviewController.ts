@@ -4,7 +4,6 @@ import {CustomFirebaseObject} from "../../models/CustomFirebaseObject";
  * The overview controller for the app.
  */
 export class OverviewController {
-    public loaded: boolean;
     public attemptedPasses = 0;
     public completedPasses = 0;
     public nbTD = 0;
