@@ -1,6 +1,9 @@
 <div class="player-container">
     <div ng-if="!Player.loading">
         Player : {{Player.player}}
+        <p ng-repeat="play in Player.plays track by $index">
+            {{play}}
+        </p>
     </div>
     <div ng-if="Player.loading" layout="row" data-layout-align="center center" class="loading">
         <md-progress-circular md-mode="indeterminate" md-diameter="128"></md-progress-circular>

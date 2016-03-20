@@ -29,7 +29,6 @@ export class PlayerController {
                 } else {
                     this.player = snapVal[0];
                 }
-                console.log(this.player);
 
                 let playsDB:Firebase = new Firebase('https://juggs-stats.firebaseio.com/plays');
 
@@ -39,10 +38,14 @@ export class PlayerController {
                     .endAt(this.player.name)
                     .once('value', (snap) => {
                         var snapVal = snap.val();
-                        for(var i in snapVal){
-                            this.plays.push(snapVal[i])
-                        }
-                        console.log(this.plays);
+                        console.log(snapVal);
+                        $timeout(() =>{
+                            for(var i in snapVal){
+                                this.plays.push(snapVal[i]);
+                                console.log(angular.copy(this.plays));
+                            }
+                        }, 0);
+
                     });
                 $timeout(() => {
                     this.loading = false;
