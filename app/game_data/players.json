@@ -12,36 +12,36 @@
   {
     "name":"Shaky",
     "jerseyNumber":8,
-    "position": ["WR", "S"]
+    "position": ["Wide Receiver", "Safety"]
   },
   {
     "name":"Gautier",
     "jerseyNumber":13,
-    "position": ["R"]
+    "position": ["Rusher"]
   },
   {
     "name":"Danica",
     "jerseyNumber":6,
-    "position": ["CB"]
+    "position": ["Cornerback"]
   },
   {
     "name":"Sandrine",
     "jerseyNumber":10,
-    "position": ["SR"]
+    "position": ["Slot Receiver"]
   },
   {
     "name":"Sylvain",
     "jerseyNumber":29,
-    "position": ["C"]
+    "position": ["Centre"]
   },
   {
     "name":"Jordan",
     "jerseyNumber":95,
-    "position": ["S"]
+    "position": ["Safety"]
   },
   {
     "name":"Matthieu",
     "jerseyNumber":99,
-    "position": ["CB"]
+    "position": ["Cornerback"]
   }
 ]
