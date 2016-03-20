@@ -21,7 +21,7 @@ import {config} from './config/core/coreConfig'
 import {run} from './config/core/coreRun'
 import './modules/overview/index';
 import './modules/games/index';
-import './modules/player/index';
+import './modules/players/index';
 import './filters/index';
 import './services/index';
 import './components/index';
@@ -55,7 +55,7 @@ module app {
             "app.filters",
             "app.components",
             "app.overview",
-            "app.player",
+            "app.players",
             "app.games"
         ])
         .config(config)

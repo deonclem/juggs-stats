@@ -1,6 +1,6 @@
-import {CustomFirebaseObject} from "../../models/CustomFirebaseObject";
-import {Play} from "../../models/Play";
-import {Player} from "../../models/Player";
+import {CustomFirebaseObject} from "../../../models/CustomFirebaseObject";
+import {Play} from "../../../models/Play";
+import {Player} from "../../../models/Player";
 /**
  * The overview controller for the app.
  */
@@ -9,7 +9,7 @@ export class PlayerController {
     public player: Player;
     public plays: Play[] = [];
 
-    constructor($scope: ng.IScope, $stateParams: ng.ui.IStateParamsService){
+    constructor($scope: ng.IScope, $stateParams: ng.ui.IStateParamsService, $timeout:ng.ITimeoutService){
         "ngInject";
 
         this.loading = true;
@@ -44,17 +44,9 @@ export class PlayerController {
                         }
                         console.log(this.plays);
                     });
-                this.loading = false;
-                $scope.$apply();
+                $timeout(() => {
+                    this.loading = false;
+                }, 0);
             });
-
-
-            //data.games.forEach((game: Play[]) => {
-            //    this.processGame(game);
-            //});
-    }
-
-    private processGame(game:Play[]):void {
-
     }
 }

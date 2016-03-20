@@ -34,7 +34,6 @@ export class GamesController {
                     this.gamesByWeek[week] = [gameMeta];
                 }
             });
-            console.log(this.gamesByWeek);
         });
     }
 

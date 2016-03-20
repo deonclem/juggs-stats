@@ -17,6 +17,6 @@ import "./player.scss";
 import {PlayerController} from './PlayerController'
 import {config as PlayerRouting} from './PlayerRouting'
 
-angular.module('app.player', ["ui.router", 'highcharts-ng'])
+angular.module('app.players.player', ["ui.router", 'highcharts-ng'])
     .config(PlayerRouting)
     .controller('PlayerController', PlayerController);
