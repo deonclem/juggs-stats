@@ -3,7 +3,7 @@
         <h2>Most catches</h2>
     </div>
     <md-list>
-        <md-list-item ng-repeat="player in Catchers.catchers | orderBy: '-data.catches' | limitTo:5" data-layout="row" data-layout-align="space-between center" class="player">
+        <md-list-item ng-repeat="player in Catchers.catchers | orderBy: '-data.catches'" data-layout="row" data-layout-align="space-between center" class="player" ng-if="player.data.catches">
             <player-link player="player"></player-link>
             <span>{{player.data.catches}}</span>
         </md-list-item>

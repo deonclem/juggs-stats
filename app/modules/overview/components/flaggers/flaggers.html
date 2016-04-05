@@ -3,7 +3,7 @@
         <h2>Most deflags</h2>
     </div>
     <md-list data->
-        <md-list-item ng-repeat="player in Flaggers.flaggers | orderBy: '-data.deflags' | limitTo:5" data-layout="row" data-layout-align="space-between center" class="player">
+        <md-list-item ng-repeat="player in Flaggers.flaggers | orderBy: '-data.deflags'" data-layout="row" data-layout-align="space-between center" class="player" ng-if="player.data.deflags">
             <player-link player="player"></player-link>
             <span>{{player.data.deflags}}</span>
         </md-list-item>

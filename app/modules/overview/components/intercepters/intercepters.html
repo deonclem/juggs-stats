@@ -3,7 +3,7 @@
         <h2>Most interceptions</h2>
     </div>
     <md-list data->
-        <md-list-item ng-repeat="player in Intercepters.intercepters | orderBy: ['-data.interceptions','-data.pickSix'] | limitTo:5" data-layout="row" data-layout-align="space-between center" class="player" ng-if="player.data.interceptions > 0">
+        <md-list-item ng-repeat="player in Intercepters.intercepters | orderBy: ['-data.interceptions','-data.pickSix']" data-layout="row" data-layout-align="space-between center" class="player" ng-if="player.data.interceptions > 0">
             <player-link player="player"></player-link>
             <span title="Pick Six">{{player.data.interceptions}} / {{player.data.pickSix}}</span>
         </md-list-item>

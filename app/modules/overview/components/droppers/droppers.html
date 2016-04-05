@@ -10,6 +10,9 @@
                     good:       player.percent >= 80,
                     average:    player.percent < 80 && player.percent >= 60,
                     bad:        player.percent < 60}">
+                <md-tooltip md-direction="top">
+                  {{player.catches}} / {{player.total}}
+                </md-tooltip>
                 {{player.percent | number:0}} %
             </span>
         </md-list-item>

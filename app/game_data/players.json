@@ -43,5 +43,10 @@
     "name":"Matthieu",
     "jerseyNumber":99,
     "position": ["Cornerback"]
+  },
+  {
+    "name":"Ocho",
+    "jerseyNumber":85,
+    "position": ["Centre"]
   }
 ]

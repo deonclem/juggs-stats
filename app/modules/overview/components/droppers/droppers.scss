@@ -4,6 +4,7 @@ droppers{
   md-card {
     .player{
       .catch-percent{
+        cursor: pointer;
         &.good{
           color: $color-good;
         }

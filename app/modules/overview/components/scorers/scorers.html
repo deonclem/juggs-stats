@@ -3,7 +3,7 @@
         <h2>Most TD scored</h2>
     </div>
     <md-list data->
-        <md-list-item ng-repeat="player in Scorers.scorers | orderBy: '-data.tds' | limitTo:5" data-layout="row" data-layout-align="space-between center" class="player" ng-if="player.data.tds">
+        <md-list-item ng-repeat="player in Scorers.scorers | orderBy: '-data.tds'" data-layout="row" data-layout-align="space-between center" class="player" ng-if="player.data.tds">
             <player-link player="player"></player-link>
             <span>{{player.data.tds}}</span>
         </md-list-item>

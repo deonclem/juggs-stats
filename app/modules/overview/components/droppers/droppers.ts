@@ -25,7 +25,9 @@ export class DroppersComponent implements ng.IComponentOptions {
                ctrl.catchPercents.push({
                    name: player.name,
                    data: {id: player.data.id},
-                   percent: player.data.catches * 100 / (player.data.catches + player.data.drops)
+                   percent: player.data.catches * 100 / (player.data.catches + player.data.drops),
+                   catches: player.data.catches,
+                   total: player.data.catches + player.data.drops
                })
            }
         });
