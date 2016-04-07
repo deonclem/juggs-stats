@@ -8,6 +8,12 @@ export class PlayerController {
     public loading: boolean;
     public player: Player;
     public plays: Play[] = [];
+    public qbStats: any = {complete:0,incomplete:0,tds:0,interceptions:0,conversions:0,sacked:0};
+    public offenseStats: any = {catches:0,drops:0,catchTds:0,runTds:0,conversions:0,run:0};
+    public defenseStats: any = {deflags:0,defended:0,interceptions:0,sacks:0,pickSix:0};
+    public hasOffensiveStats: boolean;
+    public hasDefensiveStats: boolean;
+    public hasQbStats: boolean;
 
     constructor($scope: ng.IScope, $stateParams: ng.ui.IStateParamsService, $timeout:ng.ITimeoutService){
         "ngInject";
@@ -32,17 +38,39 @@ export class PlayerController {
 
                 let playsDB:Firebase = new Firebase('https://juggs-stats.firebaseio.com/plays');
 
-                playsDB // select player where jerseyNumber = stateParams.id
+                playsDB // select plays where player = player.name
                     .orderByChild("player")
                     .startAt(this.player.name)
                     .endAt(this.player.name)
                     .once('value', (snap) => {
                         var snapVal = snap.val();
-                        console.log(snapVal);
                         $timeout(() =>{
                             for(var i in snapVal){
-                                this.plays.push(snapVal[i]);
-                                console.log(angular.copy(this.plays));
+                                var play = snapVal[i];
+                                if(play.side === 'O'){
+                                    this.hasOffensiveStats = true;
+                                    this.processOffenseStats(play);
+                                }
+                                if(play.side === 'D'){
+                                    this.hasDefensiveStats = true;
+                                    this.processDefenseStats(play);
+                                }
+                                this.plays.push(play);
+                            }
+                        }, 0);
+
+                    });
+
+                playsDB // select plays where quarterback = player.name
+                    .orderByChild("quarterback")
+                    .startAt(this.player.name)
+                    .endAt(this.player.name)
+                    .once('value', (snap) => {
+                        var snapVal = snap.val();
+                        $timeout(() =>{
+                            for(var i in snapVal){
+                                this.hasQbStats = true;
+                                this.processQBStats(snapVal[i]);
                             }
                         }, 0);
 
@@ -51,5 +79,66 @@ export class PlayerController {
                     this.loading = false;
                 }, 0);
             });
+    }
+
+    private processQBStats(play: Play) {
+        if(play.completed){
+            this.qbStats.complete++;
+        }
+        if(play.dropped || play.incomplete || play.defended || play.intercepted){
+            this.qbStats.incomplete++;
+        }
+        if(play.score){
+            this.qbStats.tds++;
+        }
+        if(play.intercepted){
+            this.qbStats.interceptions++;
+        }
+        if(play.conversion && play.conversion !== "0"){
+            this.qbStats.conversions++;
+        }
+        if(play.sack){
+            this.qbStats.sacked++;
+        }
+    }
+
+    private processOffenseStats(play: Play) {
+        if(play.completed){
+            this.offenseStats.catches++;
+        }
+        if(play.dropped){
+            this.offenseStats.drops++;
+        }
+        if(play.score && play.play_type === 'R'){
+            this.offenseStats.runTds++;
+        }
+        if(play.score && play.play_type === 'P'){
+            this.offenseStats.catchTds++;
+        }
+        if(play.conversion && play.conversion !== "0"){
+            this.offenseStats.conversions++;
+        }
+        if(play.play_type === 'R'){
+            this.offenseStats.run++;
+        }
+    }
+
+    private processDefenseStats(play: Play) {
+        if(play.flagged){
+            this.defenseStats.deflags++;
+        }
+        if(play.defended){
+            this.defenseStats.defended++;
+        }
+        if(play.intercepted){
+            this.defenseStats.interceptions++;
+        }
+        if(play.sack){
+            this.defenseStats.sacks++;
+        }
+        if(play.score){
+            this.defenseStats.pickSix++;
+        }
+        
     }
 }

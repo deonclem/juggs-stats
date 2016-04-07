@@ -1,15 +1,17 @@
 <div class="players-container">
     <md-content ng-if="!Players.loading" layout="row" data-layout-wrap data-layout-align="space-around" class="md-padding">
-        <a ui-sref="players.player({id:player.jerseyNumber})" ng-repeat="player in Players.players">
-            <md-card>
-                <img ng-src="app/assets/img/players/{{player.jerseyNumber}}_big.png" alt="{{player.name}}" class="md-card-image">
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">{{player.name}}</span>
-                    </md-card-title-text>
-                </md-card-title>
-            </md-card>
-        </a>
+        <div flex="20" ng-repeat="player in Players.players | orderBy:'jerseyNumber'" data-layout-align="space-around" data-layout="row">
+            <a ui-sref="players.player({id:player.jerseyNumber})">
+                <md-card>
+                    <img ng-src="app/assets/img/players/{{player.jerseyNumber}}_big.png" alt="{{player.name}}" class="md-card-image">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline" data-layout="row" data-layout-align="space-between">{{player.name}}<b>#{{player.jerseyNumber}}</b></span>
+                        </md-card-title-text>
+                    </md-card-title>
+                </md-card>
+            </a>
+        </div>
     </md-content>
     <div ng-if="Players.loading" layout="row" data-layout-align="center center" class="loading">
         <md-progress-circular md-mode="indeterminate" md-diameter="128"></md-progress-circular>

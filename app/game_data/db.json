@@ -673,7 +673,7 @@
       "4th down": "",
       "penalty": "",
       "quarterback": "",
-      "player": "Danica,Gautier"
+      "player": "Danica"
     },
     {
       "week": "1",
@@ -11803,7 +11803,7 @@
     {
       "week": "3",
       "game": "3",
-      "video_id": "",
+      "video_id": "1070645",
       "opponent": "Cobras",
       "side": "O",
       "play_type": "P",
@@ -13380,16 +13380,16 @@
     {
       "name":"Clément",
       "jerseyNumber":4,
-      "position": ["WR"]
+      "position": ["Wide Receiver"]
     },
     {
       "name":"Renaud",
       "jerseyNumber":5,
-      "position": ["QB"]
+      "position": ["Quarterback"]
     },
     {
       "name":"Shaky",
-      "jerseyNumber":8,
+      "jerseyNumber":9,
       "position": ["Wide Receiver", "Safety"]
     },
     {
@@ -25248,7 +25248,7 @@
       {
         "week": "3",
         "game": "3",
-        "video_id": "",
+        "video_id": "1070645",
         "opponent": "Cobras",
         "side": "O",
         "play_type": "P",

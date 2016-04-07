@@ -1,9 +1,59 @@
 <div class="player-container">
-    <div ng-if="!Player.loading">
-        Player : {{Player.player}}
-        <p ng-repeat="play in Player.plays track by $index">
-            {{play}}
-        </p>
+    <div ng-if="!Player.loading" data-layout="row">
+        <div class="player-id">
+            <img ng-src="app/assets/img/players/{{Player.player.jerseyNumber}}_big.png" alt="{{player.name}}" >
+            <div data-layout="column" data-layout-padding>
+                <h2 data-layout="row" data-layout-align="space-between">{{Player.player.name}}<span>#{{Player.player.jerseyNumber}}</span></h2>
+                <h3 class="primary">
+                    <span ng-repeat="pos in Player.player.position">{{pos}}<span ng-if="!$last"> / </span></span>
+                </h3>
+            </div>
+        </div>
+        <div flex class="stats-container" data-layout="column">
+            <h1>Season Stats</h1>
+            <md-card class="qb" ng-if="Player.hasQbStats">
+                <h3>Quarterback</h3>
+                <div data-layout="row" data-layout-align="start center">
+                    <img src="app/assets/img/qb.png" alt="qb">
+                    <div data-layout="row" data-layout-align="space-around" flex>
+                        <span>{{Player.qbStats.complete}} / {{Player.qbStats.complete + Player.qbStats.incomplete}}</span>
+                        <span>-</span><span>{{Player.qbStats.tds}} TD </span>
+                        <span>-</span><span>{{Player.qbStats.interceptions}} INT</span>
+                        <span>-</span><span>{{Player.qbStats.conversions}} Conv</span>
+                    </div>
+                </div>
+            </md-card>
+            <md-card class="offense" ng-if="Player.hasOffensiveStats">
+                <h3>Offense</h3>
+                <div data-layout="row" data-layout-align="start center">
+                    <img src="app/assets/img/offense.png" alt="offense">
+                    <div data-layout="row" data-layout-align="space-around" flex>
+                        <span>{{Player.offenseStats.catches}} / {{Player.offenseStats.catches + Player.offenseStats.drops}}</span>
+                        <span>-</span><span>{{Player.offenseStats.catchTds}} TD</span>
+                        <span>-</span><span>{{Player.offenseStats.conversions}} Conv</span>
+                        <span ng-if="Player.offenseStats.run > 0">-</span><span ng-if="Player.offenseStats.run > 0">{{Player.offenseStats.run}} Run<span ng-if="Player.offenseStats.run > 1">s</span></span>
+                        <span ng-if="Player.offenseStats.runTds > 0">-</span><span ng-if="Player.offenseStats.runTds > 0">{{Player.offenseStats.runTds}} TD (Run)</span>
+                    </div>
+                </div>
+            </md-card>
+            <md-card class="defense" ng-if="Player.hasDefensiveStats">
+                <h3>Defense</h3>
+                <div data-layout="row" data-layout-align="start center">
+                    <img src="app/assets/img/defense.png" alt="defense">
+                    <div data-layout="row" data-layout-align="space-around" flex>
+                        <span ng-if="Player.defenseStats.deflags > 0">{{Player.defenseStats.deflags}} deflag<span ng-if="Player.defenseStats.deflags > 1">s</span></span>
+                        <span ng-if="Player.defenseStats.defended > 0">-</span><span ng-if="Player.defenseStats.defended > 0">{{Player.defenseStats.defended}} PD </span>
+                        <span ng-if="Player.defenseStats.interceptions > 0">-</span><span ng-if="Player.defenseStats.interceptions > 0">{{Player.defenseStats.interceptions}} INT</span>
+                        <span ng-if="Player.defenseStats.pickSix > 0">-</span><span ng-if="Player.defenseStats.pickSix > 0">{{Player.defenseStats.pickSix}} Pick six</span>
+                        <span ng-if="Player.defenseStats.sacks > 0">-</span><span ng-if="Player.defenseStats.sacks > 0">{{Player.defenseStats.sacks}} Sack<span ng-if="Player.defenseStats.sacks > 1">s</span></span>
+                    </div>
+                </div>
+            </md-card>
+        </div>
+
+        <!--<p ng-repeat="play in Player.plays track by $index">-->
+        <!--{{play}}-->
+        <!--</p>-->
     </div>
     <div ng-if="Player.loading" layout="row" data-layout-align="center center" class="loading">
         <md-progress-circular md-mode="indeterminate" md-diameter="128"></md-progress-circular>

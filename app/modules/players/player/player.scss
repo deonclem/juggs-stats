@@ -1,0 +1,21 @@
+@import '../../../assets/variables';
+
+.player-container{
+  h3{
+    color: $color-primary;
+  }
+  .player-id {
+    h3 {
+      margin: 0;
+    }
+  }
+  .stats-container{
+    padding: 20px 40px;
+    img{
+      max-width:100px;
+    }
+    h3 {
+      margin-top: 0;
+    }
+  }
+}

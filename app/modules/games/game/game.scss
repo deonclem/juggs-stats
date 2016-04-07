@@ -37,6 +37,9 @@
         }
         .score{
           color: #43A047;
+          &.pick{
+            color: #d32f2f;
+          }
         }
       }
       &.defensive-play{
@@ -49,6 +52,9 @@
         }
         .score{
           color: #d32f2f;
+          &.pick{
+            color: #43A047;
+          }
         }
       }
     }

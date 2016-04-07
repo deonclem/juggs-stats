@@ -81,7 +81,7 @@
                         </span>
                     </span>
                     <span flex="40">
-                        <span ng-if="play.score" class="score"><b>TOUCHDOWN</b></span>
+                        <span ng-if="play.score" class="score" ng-class="{pick:play.intercepted}"><b>TOUCHDOWN</b></span>
                         <span ng-if="play.conversion">
                             <span ng-if="play.conversion !== '0'" class="score"><b>PAT</b><small ng-if="play.conversion === '2'">&nbsp;2 points</small></span>
                             <span ng-if="play.conversion === '0'"><b>PAT defended</b><small ng-if="play.conversion === '2'">&nbsp;2 points</small></span>
