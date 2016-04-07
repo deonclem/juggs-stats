@@ -30,7 +30,7 @@
                     <div data-layout="row" data-layout-align="space-around" flex>
                         <span>{{Player.offenseStats.catches}} / {{Player.offenseStats.catches + Player.offenseStats.drops}}</span>
                         <span>-</span><span>{{Player.offenseStats.catchTds}} TD</span>
-                        <span>-</span><span>{{Player.offenseStats.conversions}} Conv</span>
+                        <span ng-if="Player.offenseStats.conversions > 0">-</span><span ng-if="Player.offenseStats.conversions > 0">{{Player.offenseStats.conversions}} Conv</span>
                         <span ng-if="Player.offenseStats.run > 0">-</span><span ng-if="Player.offenseStats.run > 0">{{Player.offenseStats.run}} Run<span ng-if="Player.offenseStats.run > 1">s</span></span>
                         <span ng-if="Player.offenseStats.runTds > 0">-</span><span ng-if="Player.offenseStats.runTds > 0">{{Player.offenseStats.runTds}} TD (Run)</span>
                     </div>
