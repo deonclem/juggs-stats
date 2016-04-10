@@ -1,0 +1,119 @@
+<table>
+    <tr ng-if="Against.pos === 'Q'">
+        <th>
+        </th>
+        <th>
+            Completed
+        </th>
+        <th>
+            Incomplete
+        </th>
+        <th>
+            TD
+        </th>
+        <th>
+            INT
+        </th>
+        <th>
+            Conv.
+        </th>
+        <th>
+            Sacked
+        </th>
+    </tr>
+    <tr ng-if="Against.pos === 'O'">
+        <th>
+        </th>
+        <th>
+            Catches
+        </th>
+        <th>
+            Drops
+        </th>
+        <th>
+            TD Pass
+        </th>
+        <th>
+            Runs
+        </th>
+        <th>
+            TD Run
+        </th>
+        <th>
+            Conv.
+        </th>
+    </tr>
+    <tr ng-if="Against.pos === 'D'">
+        <th>
+        </th>
+        <th>
+            Deflags
+        </th>
+        <th>
+            PD
+        </th>
+        <th>
+            INT
+        </th>
+        <th>
+            Pick 6
+        </th>
+        <th>
+            Sacks
+        </th>
+    </tr>
+    <tr ng-repeat="(team,data) in Against.data">
+        <td class="team">{{team}}</td>
+        <td ng-if="Against.pos === 'Q'">
+            {{data.Q_complete}}
+        </td>
+        <td ng-if="Against.pos === 'Q'">
+            {{data.Q_incomplete}}
+        </td>
+        <td ng-if="Against.pos === 'Q'">
+            {{data.Q_tds}}
+        </td>
+        <td ng-if="Against.pos === 'Q'">
+            {{data.Q_interceptions}}
+        </td>
+        <td ng-if="Against.pos === 'Q'">
+            {{data.Q_conversions}}
+        </td>
+        <td ng-if="Against.pos === 'Q'">
+            {{data.Q_sacked}}
+        </td>
+        <td ng-if="Against.pos === 'O'">
+            {{data.O_catches}}
+        </td>
+        <td ng-if="Against.pos === 'O'">
+            {{data.O_drops}}
+        </td>
+        <td ng-if="Against.pos === 'O'">
+            {{data.O_catchTds}}
+        </td>
+        <td ng-if="Against.pos === 'O'">
+            {{data.O_run}}
+        </td>
+        <td ng-if="Against.pos === 'O'">
+            {{data.O_runTds}}
+        </td>
+        <td ng-if="Against.pos === 'O'">
+            {{data.O_conversions}}
+        </td>
+        <td ng-if="Against.pos === 'D'">
+            {{data.D_deflags}}
+        </td>
+        <td ng-if="Against.pos === 'D'">
+            {{data.D_defended}}
+        </td>
+        <td ng-if="Against.pos === 'D'">
+            {{data.D_interceptions}}
+        </td>
+        <td ng-if="Against.pos === 'D'">
+            {{data.D_sacks}}
+        </td>
+        <td ng-if="Against.pos === 'D'">
+            {{data.D_pickSix}}
+        </td>
+    </tr>
+</table>

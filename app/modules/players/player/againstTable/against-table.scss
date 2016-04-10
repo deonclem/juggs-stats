@@ -1,0 +1,16 @@
+against-table{
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    td, th{
+      padding: 5px;
+      text-align: right;
+      &.team{
+        text-align: left;
+      }
+    }
+    tr:nth-child(even){
+      background-color: #EFEFFB;
+    }
+  }
+}

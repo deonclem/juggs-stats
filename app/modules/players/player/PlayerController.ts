@@ -1,4 +1,3 @@
-import {CustomFirebaseObject} from "../../../models/CustomFirebaseObject";
 import {Play} from "../../../models/Play";
 import {Player} from "../../../models/Player";
 /**
@@ -11,11 +10,13 @@ export class PlayerController {
     public qbStats: any = {complete:0,incomplete:0,tds:0,interceptions:0,conversions:0,sacked:0};
     public offenseStats: any = {catches:0,drops:0,catchTds:0,runTds:0,conversions:0,run:0};
     public defenseStats: any = {deflags:0,defended:0,interceptions:0,sacks:0,pickSix:0};
+    public weeklyStats: any = {};
+    public againstStats: any = {};
     public hasOffensiveStats: boolean;
     public hasDefensiveStats: boolean;
     public hasQbStats: boolean;
 
-    constructor($scope: ng.IScope, $stateParams: ng.ui.IStateParamsService, $timeout:ng.ITimeoutService){
+    constructor($stateParams: ng.ui.IStateParamsService, $timeout:ng.ITimeoutService){
         "ngInject";
 
         this.loading = true;
@@ -55,6 +56,8 @@ export class PlayerController {
                                     this.hasDefensiveStats = true;
                                     this.processDefenseStats(play);
                                 }
+                                this.processWeeklyStats(play);
+                                this.processAgainstStats(play);
                                 this.plays.push(play);
                             }
                         }, 0);
@@ -70,7 +73,10 @@ export class PlayerController {
                         $timeout(() =>{
                             for(var i in snapVal){
                                 this.hasQbStats = true;
-                                this.processQBStats(snapVal[i]);
+                                var play = snapVal[i];
+                                this.processQBStats(play);
+                                this.processWeeklyStats(play, true);
+                                this.processAgainstStats(play, true);
                             }
                         }, 0);
 
@@ -140,5 +146,137 @@ export class PlayerController {
             this.defenseStats.pickSix++;
         }
         
+    }
+
+    private processWeeklyStats(play: Play, isQb?:boolean) {
+        if(angular.isUndefined(this.weeklyStats[play.week])){
+            this.weeklyStats[play.week] = {
+                Q_complete:0,Q_incomplete:0,Q_tds:0,Q_interceptions:0,Q_conversions:0,Q_sacked:0,
+                O_catches:0,O_drops:0,O_catchTds:0,O_runTds:0,O_conversions:0,O_run:0,
+                D_deflags:0,D_defended:0,D_interceptions:0,D_sacks:0,D_pickSix:0,
+                weekNumber: play.week
+            };
+        }
+        if(isQb){
+            if(play.completed){
+                this.weeklyStats[play.week].Q_complete++;
+            }
+            if(play.dropped || play.incomplete || play.defended || play.intercepted){
+                this.weeklyStats[play.week].Q_incomplete++;
+            }
+            if(play.score){
+                this.weeklyStats[play.week].Q_tds++;
+            }
+            if(play.intercepted){
+                this.weeklyStats[play.week].Q_interceptions++;
+            }
+            if(play.conversion && play.conversion !== "0"){
+                this.weeklyStats[play.week].Q_conversions++;
+            }
+            if(play.sack){
+                this.weeklyStats[play.week].Q_sacked++;
+            }
+        } else if(play.side === 'O'){
+            if(play.completed){
+                this.weeklyStats[play.week].O_catches++;
+            }
+            if(play.dropped){
+                this.weeklyStats[play.week].O_drops++;
+            }
+            if(play.score && play.play_type === 'R'){
+                this.weeklyStats[play.week].O_runTds++;
+            }
+            if(play.score && play.play_type === 'P'){
+                this.weeklyStats[play.week].O_catchTds++;
+            }
+            if(play.conversion && play.conversion !== "0"){
+                this.weeklyStats[play.week].O_conversions++;
+            }
+            if(play.play_type === 'R'){
+                this.weeklyStats[play.week].O_run++;
+            }
+        } else if(play.side === 'D'){
+            if(play.flagged){
+                this.weeklyStats[play.week].D_deflags++;
+            }
+            if(play.defended){
+                this.weeklyStats[play.week].D_defended++;
+            }
+            if(play.intercepted){
+                this.weeklyStats[play.week].D_interceptions++;
+            }
+            if(play.sack){
+                this.weeklyStats[play.week].D_sacks++;
+            }
+            if(play.score){
+                this.weeklyStats[play.week].D_pickSix++;
+            }
+        }
+    }
+
+    private processAgainstStats(play: Play, isQb?:boolean) {
+        if(angular.isUndefined(this.againstStats[play.opponent])){
+            this.againstStats[play.opponent] = {
+                Q_complete:0,Q_incomplete:0,Q_tds:0,Q_interceptions:0,Q_conversions:0,Q_sacked:0,
+                O_catches:0,O_drops:0,O_catchTds:0,O_runTds:0,O_conversions:0,O_run:0,
+                D_deflags:0,D_defended:0,D_interceptions:0,D_sacks:0,D_pickSix:0,
+                opponent: play.opponent
+            };
+        }
+        if(isQb){
+            if(play.completed){
+                this.againstStats[play.opponent].Q_complete++;
+            }
+            if(play.dropped || play.incomplete || play.defended || play.intercepted){
+                this.againstStats[play.opponent].Q_incomplete++;
+            }
+            if(play.score){
+                this.againstStats[play.opponent].Q_tds++;
+            }
+            if(play.intercepted){
+                this.againstStats[play.opponent].Q_interceptions++;
+            }
+            if(play.conversion && play.conversion !== "0"){
+                this.againstStats[play.opponent].Q_conversions++;
+            }
+            if(play.sack){
+                this.againstStats[play.opponent].Q_sacked++;
+            }
+        } else if(play.side === 'O'){
+            if(play.completed){
+                this.againstStats[play.opponent].O_catches++;
+            }
+            if(play.dropped){
+                this.againstStats[play.opponent].O_drops++;
+            }
+            if(play.score && play.play_type === 'R'){
+                this.againstStats[play.opponent].O_runTds++;
+            }
+            if(play.score && play.play_type === 'P'){
+                this.againstStats[play.opponent].O_catchTds++;
+            }
+            if(play.conversion && play.conversion !== "0"){
+                this.againstStats[play.opponent].O_conversions++;
+            }
+            if(play.play_type === 'R'){
+                this.againstStats[play.opponent].O_run++;
+            }
+        } else if(play.side === 'D'){
+            if(play.flagged){
+                this.againstStats[play.opponent].D_deflags++;
+            }
+            if(play.defended){
+                this.againstStats[play.opponent].D_defended++;
+            }
+            if(play.intercepted){
+                this.againstStats[play.opponent].D_interceptions++;
+            }
+            if(play.sack){
+                this.againstStats[play.opponent].D_sacks++;
+            }
+            if(play.score){
+                this.againstStats[play.opponent].D_pickSix++;
+            }
+        }
     }
 }

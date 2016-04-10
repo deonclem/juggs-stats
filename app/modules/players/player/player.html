@@ -12,7 +12,7 @@
         <div flex class="stats-container" data-layout="column">
             <h1>Season Stats</h1>
             <md-card class="qb" ng-if="Player.hasQbStats">
-                <h3>Quarterback</h3>
+                <h2>Quarterback</h2>
                 <div data-layout="row" data-layout-align="start center">
                     <img src="app/assets/img/qb.png" alt="qb">
                     <div data-layout="row" data-layout-align="space-around" flex>
@@ -22,9 +22,24 @@
                         <span>-</span><span>{{Player.qbStats.conversions}} Conv</span>
                     </div>
                 </div>
+                <div class="viz" data-layout="row" data-layout-padding>
+                    <div flex="50" class="weekly">
+                        <h3 data-layout="row" data-layout-align="center">Week by week</h3>
+                        <line-chart data="Player.weeklyStats" metric="Q_complete" title="Completed" display-axis-label="false"></line-chart>
+                        <line-chart data="Player.weeklyStats" metric="Q_incomplete" title="Incomplete" display-axis-label="false"></line-chart>
+                        <line-chart data="Player.weeklyStats" metric="Q_tds" title="TD" display-axis-label="false"></line-chart>
+                        <line-chart data="Player.weeklyStats" metric="Q_interceptions" title="INT" display-axis-label="false"></line-chart>
+                        <line-chart data="Player.weeklyStats" metric="Q_conversions" title="Conversions" display-axis-label="false"></line-chart>
+                        <line-chart data="Player.weeklyStats" metric="Q_sacked" title="Sacked" display-axis-label="true"></line-chart>
+                    </div>
+                    <div flex="50" class="against">
+                        <h3 data-layout="row" data-layout-align="center">Against</h3>
+                        <against-table data="Player.againstStats" pos="Q"></against-table>
+                    </div>
+                </div>
             </md-card>
             <md-card class="offense" ng-if="Player.hasOffensiveStats">
-                <h3>Offense</h3>
+                <h2>Offense</h2>
                 <div data-layout="row" data-layout-align="start center">
                     <img src="app/assets/img/offense.png" alt="offense">
                     <div data-layout="row" data-layout-align="space-around" flex>
@@ -35,11 +50,27 @@
                         <span ng-if="Player.offenseStats.runTds > 0">-</span><span ng-if="Player.offenseStats.runTds > 0">{{Player.offenseStats.runTds}} TD (Run)</span>
                     </div>
                 </div>
+                <div class="viz" data-layout="row" data-layout-padding>
+                    <div flex="50" class="weekly">
+                        <h3 data-layout="row" data-layout-align="center">Week by week</h3>
+                        <line-chart data="Player.weeklyStats" metric="O_catches" title="Catches" display-axis-label="false"></line-chart>
+                        <line-chart data="Player.weeklyStats" metric="O_drops" title="Drops" display-axis-label="false"></line-chart>
+                        <line-chart data="Player.weeklyStats" metric="O_catchTds" title="TD Pass" display-axis-label="false"></line-chart>
+                        <line-chart data="Player.weeklyStats" metric="O_run" title="Runs" display-axis-label="false"></line-chart>
+                        <line-chart data="Player.weeklyStats" metric="O_runTds" title="TD Run" display-axis-label="false"></line-chart>
+                        <line-chart data="Player.weeklyStats" metric="O_conversions" title="Conversions" display-axis-label="true"></line-chart>
+                    </div>
+                    <div flex="50" class="against">
+                        <h3 data-layout="row" data-layout-align="center">Against</h3>
+                        <against-table data="Player.againstStats" pos="O"></against-table>
+                    </div>
+                    <!--<pre>{{Player.weeklyStats | json}}</pre>-->
+                </div>
             </md-card>
             <md-card class="defense" ng-if="Player.hasDefensiveStats">
-                <h3>Defense</h3>
+                <h2>Defense</h2>
                 <div data-layout="row" data-layout-align="start center">
-                    <img src="app/assets/img/defense.png" alt="defense">
+                    <img src="app/assets/img/defense.png" alt="defense" class="big">
                     <div data-layout="row" data-layout-align="space-around" flex>
                         <span ng-if="Player.defenseStats.deflags > 0">{{Player.defenseStats.deflags}} deflag<span ng-if="Player.defenseStats.deflags > 1">s</span></span>
                         <span ng-if="Player.defenseStats.defended > 0">-</span><span ng-if="Player.defenseStats.defended > 0">{{Player.defenseStats.defended}} PD </span>
@@ -48,12 +79,22 @@
                         <span ng-if="Player.defenseStats.sacks > 0">-</span><span ng-if="Player.defenseStats.sacks > 0">{{Player.defenseStats.sacks}} Sack<span ng-if="Player.defenseStats.sacks > 1">s</span></span>
                     </div>
                 </div>
+                <div class="viz" data-layout="row" data-layout-padding>
+                    <div flex="50" class="weekly">
+                        <h3 data-layout="row" data-layout-align="center">Week by week</h3>
+                        <line-chart data="Player.weeklyStats" metric="D_deflags" title="Deflags" display-axis-label="false"></line-chart>
+                        <line-chart data="Player.weeklyStats" metric="D_defended" title="PD" display-axis-label="false"></line-chart>
+                        <line-chart data="Player.weeklyStats" metric="D_interceptions" title="INT" display-axis-label="false"></line-chart>
+                        <line-chart data="Player.weeklyStats" metric="D_sacks" title="Sacks" display-axis-label="false"></line-chart>
+                        <line-chart data="Player.weeklyStats" metric="D_pickSix" title="Pick 6" display-axis-label="true"></line-chart>
+                    </div>
+                    <div flex="50" class="against">
+                        <h3 data-layout="row" data-layout-align="center">Against</h3>
+                        <against-table data="Player.againstStats" pos="D"></against-table>
+                    </div>
+                </div>
             </md-card>
         </div>
-
-        <!--<p ng-repeat="play in Player.plays track by $index">-->
-        <!--{{play}}-->
-        <!--</p>-->
     </div>
     <div ng-if="Player.loading" layout="row" data-layout-align="center center" class="loading">
         <md-progress-circular md-mode="indeterminate" md-diameter="128"></md-progress-circular>

@@ -1,5 +1,5 @@
 /**
- * Homepage Component
+ * Player Component
  */
 
 // Highcharts
@@ -16,7 +16,11 @@ import "./player.scss";
  */
 import {PlayerController} from './PlayerController'
 import {config as PlayerRouting} from './PlayerRouting'
+import {LineChartComponent} from "./lineChart/lineChart";
+import {AgainsTableComponent} from "./againstTable/againstTable";
 
 angular.module('app.players.player', ["ui.router", 'highcharts-ng'])
     .config(PlayerRouting)
-    .controller('PlayerController', PlayerController);
+    .controller('PlayerController', PlayerController)
+    .component('againstTable', new AgainsTableComponent())
+    .component('lineChart', new LineChartComponent());

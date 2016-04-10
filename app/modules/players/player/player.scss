@@ -5,6 +5,9 @@
     color: $color-primary;
   }
   .player-id {
+    img{
+      max-width: 250px;
+    }
     h3 {
       margin: 0;
     }
@@ -12,7 +15,10 @@
   .stats-container{
     padding: 20px 40px;
     img{
-      max-width:100px;
+      max-width: 100px;
+      &.big{
+        max-width: 130px;
+      }
     }
     h3 {
       margin-top: 0;
